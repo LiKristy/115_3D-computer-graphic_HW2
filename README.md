@@ -115,11 +115,11 @@ if (ENABLE_SSAA) {
 - sample放在像素內的 0.25 與 0.75 位置,四個樣本均勻分布。
 - 覆蓋率與畫面上原本的顏色用 `lerpColor` 混合,邊緣像素因此有5種灰階層次。
 
-- SSAA開啟前
+#### SSAA開啟前
 
 <img width="754" height="449" alt="螢幕擷取畫面 2026-11-14 102002" src="https://github.com/user-attachments/assets/487f9e85-ba58-43fc-8dfd-10aa6fd10f0a" />
 
-- SSAA開啟後
+#### SSAA開啟後
 
 <img width="750" height="448" alt="螢幕擷取畫面 2026-11-14 102028" src="https://github.com/user-attachments/assets/0b0f9c5c-feef-4ca6-944d-d4d37261521a" />
 

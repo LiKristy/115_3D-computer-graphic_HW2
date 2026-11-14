@@ -17,6 +17,14 @@ void makeRotZ(float a) {
   m[4] = sin(a);  m[5] =  cos(a);
 }
 ```
+-original
+<img width="748" height="443" alt="image" src="https://github.com/user-attachments/assets/f081ffda-4929-4de5-8092-f6ec63ee76cb" />
+-position
+<img width="750" height="446" alt="image" src="https://github.com/user-attachments/assets/6c181e67-a113-4097-8032-fa5147157d70" />
+-rotation
+<img width="750" height="443" alt="image" src="https://github.com/user-attachments/assets/bd8d50f9-bfe6-4c4e-8d63-a0c5b41729fb" />
+-scale
+<img width="748" height="449" alt="image" src="https://github.com/user-attachments/assets/4f1b7ffa-14f2-4b4b-818d-0f32c798e31c" />
 
 ### 2. `util::pnpoly(float x, float y, Vector3[] vertexes)`(點是否在多邊形內)
 
@@ -50,19 +58,21 @@ for (int i = 0; i < v.length; i++) {
     maxX = max(maxX, v[i].x);  maxY = max(maxY, v[i].y);
 }
 ```
+<img width="746" height="445" alt="image" src="https://github.com/user-attachments/assets/c5f4e372-9265-4ca1-99fd-a284fe47a044" />
 
-有了包圍盒後,填色時只需對盒內的像素呼叫 `pnpoly`,不必掃描整個畫布,因此渲染速度明顯加快。
 
 ### 4. `Vector3[] Sutherland_Hodgman_algorithm(Vector3[] points, Vector3[] boundary)` Sutherland-Hodgman 演算法
 
-依序用 boundary 的每一條邊(視為無限長的直線)裁切目前的多邊形。對輸入多邊形的每條邊 (prev → cur),依兩端點在直線內外的情況處理:
-
+依序用 boundary 的每一條邊(視為無限長的直線)裁切目前的多邊形。
+規則:
+<img width="1372" height="1000" alt="檔案_000" src="https://github.com/user-attachments/assets/c6813a0d-6673-41f8-b22e-c6c416f88d0d" />
 
 做法:
 - 用 `cross2(a, b, p) = (b-a) × (p-a)` 的正負號判斷點在邊的哪一側。
 - 用有號面積(shoelace formula)判斷 boundary 是順時針或逆時針,再乘上對應的符號,所以不論 boundary 以哪種方向給定,結果都正確。
 - 以兩端點對該直線的叉積值 `ds`、`de` 求參數 `t = ds / (ds - de)`,再用線性內插得到交點。
 - 若某一輪裁切後沒有任何頂點,表示多邊形完全在邊界外,提前結束並回傳空陣列。
+<img width="746" height="448" alt="image" src="https://github.com/user-attachments/assets/c404220d-b183-495e-9cba-aaf540fd019d" />
 
 ### 5. 加分題:SSAA
 
@@ -102,6 +112,11 @@ if (ENABLE_SSAA) {
 - sample放在像素內的 0.25 與 0.75 位置,四個樣本均勻分布。
 - 覆蓋率與畫面上原本的顏色用 `lerpColor` 混合,邊緣像素因此有5種灰階層次。
 
+-SSAA開啟前
+<img width="754" height="449" alt="螢幕擷取畫面 2026-11-14 102002" src="https://github.com/user-attachments/assets/487f9e85-ba58-43fc-8dfd-10aa6fd10f0a" />
+
+-SSAA開啟後
+<img width="750" height="448" alt="螢幕擷取畫面 2026-11-14 102028" src="https://github.com/user-attachments/assets/0b0f9c5c-feef-4ca6-944d-d4d37261521a" />
 
 ## 遇到的問題與發現
 

@@ -19,10 +19,13 @@ void makeRotZ(float a) {
 ```
 #### original
 <img width="748" height="443" alt="image" src="https://github.com/user-attachments/assets/f081ffda-4929-4de5-8092-f6ec63ee76cb" />
+
 #### position
 <img width="750" height="446" alt="image" src="https://github.com/user-attachments/assets/6c181e67-a113-4097-8032-fa5147157d70" />
+
 #### rotation
 <img width="750" height="443" alt="image" src="https://github.com/user-attachments/assets/bd8d50f9-bfe6-4c4e-8d63-a0c5b41729fb" />
+
 #### scale
 <img width="748" height="449" alt="image" src="https://github.com/user-attachments/assets/4f1b7ffa-14f2-4b4b-818d-0f32c798e31c" />
 

@@ -1,4 +1,4 @@
-### 1. 變換矩陣(`Matrix4.pde`)
+# 1. 變換矩陣(`Matrix4.pde`)
 
 ```java
 void makeTrans(Vector3 t) {
@@ -17,16 +17,16 @@ void makeRotZ(float a) {
   m[4] = sin(a);  m[5] =  cos(a);
 }
 ```
-# original
+#### original
 <img width="748" height="443" alt="image" src="https://github.com/user-attachments/assets/f081ffda-4929-4de5-8092-f6ec63ee76cb" />
-# position
+#### position
 <img width="750" height="446" alt="image" src="https://github.com/user-attachments/assets/6c181e67-a113-4097-8032-fa5147157d70" />
-# rotation
+#### rotation
 <img width="750" height="443" alt="image" src="https://github.com/user-attachments/assets/bd8d50f9-bfe6-4c4e-8d63-a0c5b41729fb" />
-# scale
+#### scale
 <img width="748" height="449" alt="image" src="https://github.com/user-attachments/assets/4f1b7ffa-14f2-4b4b-818d-0f32c798e31c" />
 
-### 2. `util::pnpoly(float x, float y, Vector3[] vertexes)`(點是否在多邊形內)
+# 2. `util::pnpoly(float x, float y, Vector3[] vertexes)`(點是否在多邊形內)
 
 使用 even-odd 射線法:從測試點往 +x 方向發出一條水平射線,計算與多邊形各邊的交點數,奇數個交點代表在內部,偶數個代表在外部。
 
@@ -46,7 +46,7 @@ boolean pnpoly(float x, float y, Vector3[] vertexes) {
 }
 ```
 
-### 3. `util::findBoundBox(Vector3[] v)` (Find the boundary of a polygon) 
+# 3. `util::findBoundBox(Vector3[] v)` (Find the boundary of a polygon) 
 
 掃過所有頂點,分別記錄 x、y 的最小值與最大值。初始值使用 `Float.MAX_VALUE` / `-Float.MAX_VALUE`,因此頂點座標為負數時也不會出錯。回傳 `{ min, max }` 兩個點。
 
@@ -61,7 +61,7 @@ for (int i = 0; i < v.length; i++) {
 <img width="746" height="445" alt="image" src="https://github.com/user-attachments/assets/c5f4e372-9265-4ca1-99fd-a284fe47a044" />
 
 
-### 4. `Vector3[] Sutherland_Hodgman_algorithm(Vector3[] points, Vector3[] boundary)` Sutherland-Hodgman 演算法
+# 4. `Vector3[] Sutherland_Hodgman_algorithm(Vector3[] points, Vector3[] boundary)` Sutherland-Hodgman 演算法
 
 依序用 boundary 的每一條邊(視為無限長的直線)裁切目前的多邊形。
 規則:
@@ -74,7 +74,7 @@ for (int i = 0; i < v.length; i++) {
 - 若某一輪裁切後沒有任何頂點,表示多邊形完全在邊界外,提前結束並回傳空陣列。
 <img width="746" height="448" alt="image" src="https://github.com/user-attachments/assets/c404220d-b183-495e-9cba-aaf540fd019d" />
 
-### 5. 加分題:SSAA
+# 5. 加分題:SSAA
 
 原本的填色是邊緣只有0或1，SSAA改成在每個像素內取2×2共4個子樣本,計算被多邊形涵蓋的比例,再依比例混合顏色。
 
@@ -118,12 +118,12 @@ if (ENABLE_SSAA) {
 -SSAA開啟後
 <img width="750" height="448" alt="螢幕擷取畫面 2026-11-14 102028" src="https://github.com/user-attachments/assets/0b0f9c5c-feef-4ca6-944d-d4d37261521a" />
 
-## 遇到的問題與發現
+# 遇到的問題與發現
 
 - Sutherland-Hodgman 的「內側」方向取決於 boundary 的頂點順序,因此改用有號面積決定判斷符號,避免寫死方向。
 - 開啟 SSAA 後,若保留模板中的黑色輪廓線,會蓋掉抗鋸齒的邊緣,因此改為 SSAA 開啟時不畫輪廓。
 
-## LLM
+# LLM
 
 - 幫忙解決Sutherland-Hodgman方向的問題(有號面積)
 - 撰寫一部分READ.md
